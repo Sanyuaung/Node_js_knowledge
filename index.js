@@ -16,12 +16,19 @@
 
 const http = require('http');
 const fs = require('fs');
+const { parse } = require('querystring')
 http.createServer((req, res) => {
     const url = req.url;
     const method = req.method;
+    if (url == '/' && method == 'POST') {
+        let data = '';
+        req.on('data', d => {
+            data += d;
+        })
 
-    if(url=='/' && method =='POST'){
-        console.log('Hello Post Method')
+        req.on('end', () => {
+            console.log(parse(data).name);
+        })
     }
 
     if (url == '/') {
