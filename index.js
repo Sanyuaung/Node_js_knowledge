@@ -18,6 +18,12 @@ const http = require('http');
 const fs = require('fs');
 http.createServer((req, res) => {
     const url = req.url;
+    const method = req.method;
+
+    if(url=='/' && method =='POST'){
+        console.log('Hello Post Method')
+    }
+
     if (url == '/') {
         fs.readFile('./pages/index.html', (err, data) => {
             if (err) throw err;
