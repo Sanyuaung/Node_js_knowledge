@@ -13,9 +13,15 @@
 // const h = require('./helper');
 // console.log(h.sum(8,9));
 // console.log(h.isLikeBlack);
+
 const http = require('http');
+const fs = require('fs');
 http.createServer((req, res) => {
-    res.end('Hello Nodejs')
+    fs.readFile('./pages/index.html', (err, data) => {
+        if (err) throw err;
+        res.write(data);
+        res.end()
+    })
 }).listen(3000, () => {
     console.log('Server is running on prot 3000');
 });
