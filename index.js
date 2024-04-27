@@ -17,11 +17,26 @@
 const http = require('http');
 const fs = require('fs');
 http.createServer((req, res) => {
-    fs.readFile('./pages/index.html', (err, data) => {
-        if (err) throw err;
-        res.write(data);
-        res.end()
-    })
+    const url = req.url;
+    if (url == '/') {
+        fs.readFile('./pages/index.html', (err, data) => {
+            if (err) throw err;
+            res.write(data);
+            res.end()
+        })
+    } else if (url == '/about') {
+        fs.readFile('./pages/about.html', (err, data) => {
+            if (err) throw err;
+            res.write(data);
+            res.end()
+        })
+    } else if (url == '/contact') {
+        fs.readFile('./pages/contact.html', (err, data) => {
+            if (err) throw err;
+            res.write(data);
+            res.end()
+        })
+    }
 }).listen(3000, () => {
     console.log('Server is running on prot 3000');
 });
