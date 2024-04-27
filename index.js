@@ -10,6 +10,12 @@
 // console.log(node.toString());
 // console.log('end program');
 
-const h = require('./helper');
-console.log(h.sum(8,9));
-console.log(h.isLikeBlack);
+// const h = require('./helper');
+// console.log(h.sum(8,9));
+// console.log(h.isLikeBlack);
+const http = require('http');
+http.createServer((req, res) => {
+    res.end('Hello Nodejs')
+}).listen(3000, () => {
+    console.log('Server is running on prot 3000');
+});
